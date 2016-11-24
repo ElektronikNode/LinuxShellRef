@@ -1,0 +1,70 @@
+\documentclass[11pt]{article}
+
+\usepackage{tabularx}
+\usepackage{ngerman}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{textcomp}
+\newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
+
+% Kopf- und Fußzeile
+\pagestyle{fancy}
+
+\lhead{head1}
+\chead{head2}
+\rhead{head3}
+
+\lfoot {foot1}
+\cfoot{foot2}
+\rfoot{foot3}
+
+% Für Tabellen, etc.
+\def\arraystretch{1.3}
+
+% Überschrift
+\title{\textbf{Linux Shell Referenz}\\Für den Linux-Crashkurs am 3.12.2016}
+\author{Alle beteiligten Autoren}
+\date{Version 0.0}
+
+\begin{document}
+
+\maketitle
+
+\section {Allgemein}
+
+\subsection {Hilfeseiten}
+% man, apropos, info
+
+\section {Arbeiten mit Dateien}
+
+\subsection {Ortsbezeichnungen im Dateisystem}
+
+\begin{tabularx}{1\textwidth}{|l|l|X|}
+\hline
+\textbf{Ziel} & \textbf{Zeichen} & \textbf{Beispiel} \\
+\hline
+Hauptverzeichnis (Root) & \lstinline$/$ & \lstinline$/home/username/Dokumente$ \\
+Persönlicher Ordner (Home) & \textapprox & \textapprox\lstinline$/Dokumente$ \\
+Diese Datei / dieser Ordner & \lstinline$.$ & \lstinline$./Dokumente$, \lstinline$./run.sh$ \\
+Übergeordnetes Verzeichnis & \lstinline$..$ & \lstinline$../Dokumente$ \\
+\hline
+\end{tabularx}
+
+\subsection {Befehle zur Navigation im Dateisystem}
+% cd, ls, ls --all
+
+\subsection {Interaktion mit Dateien und Ordnern}
+% cmp, cat, basename
+
+\section {Benutzer und Gruppen}
+% Allgemeine Erklärung
+
+\subsection {Benutzerverwaltung}
+% passwd und ähnliches
+
+\subsection {Berechtigungen von Dateien}
+% chmod, chgrp, chown, ausführbar machen
+
+\end{document}
