@@ -7,7 +7,23 @@
 \usepackage{listings}
 \usepackage{multicol}
 \usepackage{textcomp}
+\usepackage{hyperref}
 \newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
+
+% Listings settings
+\lstset{
+  language=bash,
+  %numbers=left,
+  %basicstyle=\ttfamily\scriptsize,
+  %basicstyle=\ttfamily\small,
+  %tabsize=4,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue},
+  %showstringspaces=false,
+  %inputencoding={utf8},
+  %extendedchars=true,
+  %breaklines=true
+}
 
 % Kopf- und Fußzeile
 \pagestyle{fancy}
@@ -66,5 +82,8 @@ Diese Datei / dieser Ordner & \lstinline$.$ & \lstinline$./Dokumente$, \lstinlin
 
 \subsection {Berechtigungen von Dateien}
 % chmod, chgrp, chown, ausführbar machen
+
+
+\input{Emulatoren}
 
 \end{document}

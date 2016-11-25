@@ -1,0 +1,12 @@
+\section{Emulatoren}
+Manchmal kommt man nicht darum herum Programme auszuführen die nicht für GNU/Linux sondern z.B. Windows geschrieben wurden. Natürlich kann man für solche Fälle stets ein zweites Betriebssystem auf der Festplatte installiert haben (Dualboot), allerdings ist dann zum Wechseln stets ein Neustart erforderlich und man wird aus seiner gewohnten Umgebung gerissen. Zum Glück gibt es für diese Fälle auch eine Lösung: Emulatoren. Diese gaukeln einem Programm ein virtuelles System vor und übersetzen alle Systemaufrufe auf das tatsächliche GNU/Linux--System.\par
+Leider ist das in der Praxis oft nicht so einfach. Vor allem Software die eng an die Hardware gebunden ist kann Schwierigkeiten machen. Bevor man überlegt einen Emulator einzusetzen sollte man daher immer zuerst prüfen ob nicht doch eine ``native'' Version der Software bzw. eine Alternative verfügbar ist.\par
+
+\subsection{Wine}
+Wine ist eigentlich kein Emulator im engeren Sinne sondern lediglich ein Kompatibilitäts--Layer für Windows-Programme, was in vielen Fällen aber vollkommen ausreichend ist. Das Programm verhält sich mit Wine fast genauso wie eine normale Anwendung und fügt sich nahtlos ins System ein. Wine ist funktioniert für viele kleine und teilweise auch größere Anwendungen oder Spiele sehr gut und zuverlässig und sollte auf keinem GNU/Linux--System fehlen. Falls keine native Version verfügbar ist sollte Wine immer als nächstes in Betracht gezogen werden. Leider ist Wine aufgrund der Komplexität der Windows--API aber immer noch unvollständig, so dass nicht alle Windows--Programme reibungsfrei ausgeführt werden können. Diese Seite \url{https://appdb.winehq.org/} gibt einen Überblick welche Software läuft und welche nicht bzw. welche Tricks man eventuell anwenden muss.\par
+Die Benutzung von Wine ist denkbar einfach. Wenn Wine installiert ist reicht im Normalfall eine Doppelklick auf die *.exe Datei um diese zu starten. Natürlich kann man Wine auch aus dem Terminal aufrufen:
+\begin{lstlisting}
+ $ wine program.exe
+\end{lstlisting}
+
+\subsection{virtuelle Maschinen}

@@ -1,1 +1,6 @@
 .ShellReferenz.tex.swp
+
+*.log
+*.backup
+*.aux
+*.out
