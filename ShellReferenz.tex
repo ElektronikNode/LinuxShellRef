@@ -8,22 +8,55 @@
 \usepackage{multicol}
 \usepackage{textcomp}
 \usepackage{hyperref}
+\usepackage{color} 
 \newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
+
+\definecolor{grey}{RGB}{127,127,127}
+\definecolor{lightgrey}{RGB}{180,180,180}
+\definecolor{darkgrey}{RGB}{90,90,90}
+\definecolor{dkgreen}{rgb}{0,0.6,0}  
+\definecolor{gray}{rgb}{0.5,0.5,0.5} 
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\definecolor{maroon}{rgb}{0.5,0,0}
+
+\lstset{literate=%
+{Ö}{{\"O}}1 
+{Ä}{{\"A}}1 
+{Ü}{{\"U}}1 
+{ß}{{\ss}}2 
+{ü}{{\"u}}1 
+{ä}{{\"a}}1 
+{ö}{{\"o}}1
+{~}{{\textapprox}}1
+}
 
 % Listings settings
 \lstset{
-  language=bash,
-  %numbers=left,
-  %basicstyle=\ttfamily\scriptsize,
-  %basicstyle=\ttfamily\small,
-  %tabsize=4,
-  commentstyle=\color{red},
-  keywordstyle=\color{blue},
-  %showstringspaces=false,
-  %inputencoding={utf8},
-  %extendedchars=true,
-  %breaklines=true
+    language=bash,
+    basicstyle=\ttfamily,
+    tabsize=4,
+    commentstyle=\color{dkgreen},
+    keywordstyle=\color{blue},
+    numbers=left,
+   	numberstyle=\tiny\color{gray}, 
+	stepnumber=1,
+	numbersep=5pt, 
+	backgroundcolor=\color{white},    
+    frame=l,
+  	rulecolor=\color{dkgreen},
+  	stringstyle=\color{mauve},
+  	escapeinside={\%*}{*)},
+  	morekeywords={cmp,cat,basename,ls,mkdir,rm,apt-get}
 }
+
+\lstdefinestyle{terminal}{
+    language=bash,
+    moredelim=[s][\color{mauve}\ttfamily]{bob@}{\$}
+}
+
+% Erste Zeile eines Absatzes wird nicht eingerückt
+\setlength{\parindent}{0pt}
 
 % Kopf- und Fußzeile
 \pagestyle{fancy}
@@ -69,10 +102,66 @@ Diese Datei / dieser Ordner & \lstinline$.$ & \lstinline$./Dokumente$, \lstinlin
 \end{tabularx}
 
 \subsection {Befehle zur Navigation im Dateisystem}
-% cd, ls, ls --all
+
+\textbf{Ordner ändern}
+
+\begin{lstlisting}[style=terminal]
+bob@computer:~$ cd Dokumente/
+bob@computer:~/Dokumente$ 
+\end{lstlisting}
+
+\textbf{Ornderinhalte auflisten}
+
+\begin{lstlisting}[style=terminal]
+bob@computer:~$ ls
+Bilder Dokumente Downloads
+\end{lstlisting}
+
+\begin{lstlisting}[style=terminal]
+bob@computer:~$ ls --all
+. .. Bilder Dokumente Downloads
+\end{lstlisting}
+
+\begin{lstlisting}[style=terminal]
+bob@computer:~$ ls -l
+drwxr-xr-x  4 [bob] bob 4096 Nov 20 18:03 Bilder
+drwxr-xr-x 11 bob bob 4096 Nov 16 13:31 Dokumente
+drwxr-xr-x  3 bob bob 4096 Nov 04 19:22 Downloads
+\end{lstlisting}
 
 \subsection {Interaktion mit Dateien und Ordnern}
-% cmp, cat, basename
+
+Zeigt die Unterschiede zwischen zwei Dateien an
+\begin{lstlisting}
+cmp file1 file2
+\end{lstlisting}
+
+Zeigt den Inhalt einer Datei an
+\begin{lstlisting}
+cat file1 file2
+\end{lstlisting}
+
+Gibt den Dateinamen ohne Pfad aus
+\begin{lstlisting}
+basename file1
+\end{lstlisting}
+
+Einen Ordner erstellen
+\begin{lstlisting}
+mkdir folder
+\end{lstlisting}
+
+\begin{multicols}{2}
+Eine Datei löschen
+\begin{lstlisting}
+rm file1
+\end{lstlisting}
+\columnbreak
+Einen Ordner mit Inhalt löschen
+\begin{lstlisting}
+rm -r folder
+\end{lstlisting}
+\end{multicols}
 
 \section {Benutzer und Gruppen}
 % Allgemeine Erklärung
@@ -82,6 +171,8 @@ Diese Datei / dieser Ordner & \lstinline$.$ & \lstinline$./Dokumente$, \lstinlin
 
 \subsection {Berechtigungen von Dateien}
 % chmod, chgrp, chown, ausführbar machen
+
+% TODO mount, umount, cd /media/usr/..., evtl etc/fstab
 
 
 \input{Emulatoren}
