@@ -8,8 +8,11 @@
 \usepackage{multicol}
 \usepackage{textcomp}
 \usepackage{hyperref}
-\usepackage{color} 
+\usepackage{color}
+\usepackage{geometry}
 \newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
+
+\geometry {a4paper, left=20mm, right=20mm, top=25mm, bottom=25mm}
 
 \definecolor{grey}{RGB}{127,127,127}
 \definecolor{lightgrey}{RGB}{180,180,180}
@@ -47,7 +50,8 @@
   	rulecolor=\color{dkgreen},
   	stringstyle=\color{mauve},
   	escapeinside={\%*}{*)},
-  	morekeywords={cmp,cat,basename,ls,mkdir,rm,apt-get}
+  	morekeywords={cmp,cat,basename,ls,mkdir,rm,apt-get},
+  	breaklines=true
 }
 
 \lstdefinestyle{terminal}{
@@ -61,13 +65,10 @@
 % Kopf- und Fußzeile
 \pagestyle{fancy}
 
-\lhead{head1}
-\chead{head2}
-\rhead{head3}
+\lhead{Linux-Kurzreferenz}
+\chead{}
+\rhead{Offenes Technologielabor Gmunden}
 
-\lfoot {foot1}
-\cfoot{foot2}
-\rfoot{foot3}
 
 % Für Tabellen, etc.
 \def\arraystretch{1.3}
@@ -104,11 +105,20 @@ Diese Datei / dieser Ordner & \lstinline$.$ & \lstinline$./Dokumente$, \lstinlin
 \subsection {Befehle zur Navigation im Dateisystem}
 
 \textbf{Ordner ändern}
-
+\begin{multicols}{2}
 \begin{lstlisting}[style=terminal]
 bob@computer:~$ cd Dokumente/
-bob@computer:~/Dokumente$ 
+bob@computer:~/Dokumente$ cd ..
+bob@computer:~$
 \end{lstlisting}
+\columnbreak
+\begin{tabularx}{1\columnwidth}{||X||}
+\hline
+\textbf USB-Sticks und Festplatten werden in \lstinline$/media/bob$ eingehängt\\
+%\lstinline$cd /media/bob/0976-2314$\\
+\hline
+\end{tabularx}
+\end{multicols}
 
 \textbf{Ornderinhalte auflisten}
 
@@ -131,25 +141,29 @@ drwxr-xr-x  3 bob bob 4096 Nov 04 19:22 Downloads
 
 \subsection {Interaktion mit Dateien und Ordnern}
 
+\begin{multicols}{2}
 Zeigt die Unterschiede zwischen zwei Dateien an
 \begin{lstlisting}
 cmp file1 file2
 \end{lstlisting}
-
+\columnbreak
 Zeigt den Inhalt einer Datei an
 \begin{lstlisting}
 cat file1 file2
 \end{lstlisting}
+\end{multicols}
 
+\begin{multicols}{2}
 Gibt den Dateinamen ohne Pfad aus
 \begin{lstlisting}
 basename file1
 \end{lstlisting}
-
+\columnbreak
 Einen Ordner erstellen
 \begin{lstlisting}
 mkdir folder
 \end{lstlisting}
+\end{multicols}
 
 \begin{multicols}{2}
 Eine Datei löschen
@@ -174,6 +188,53 @@ rm -r folder
 
 % TODO mount, umount, cd /media/usr/..., evtl etc/fstab
 
+\section{Paketverwaltung}
+
+Die meisten Programme, die man benötigt, müssen nicht manuell heruntergeladen werden. Software ist bei den meisten Linux-Distributionen in Paketen organisiert; mit einem Paketmanager kann diese Software automatisch installiert und auf dem aktuellen Stand gehalten werden.
+
+In Ubuntu und ähnlichen Systemen wird APT\footnote{\url{https://wiki.ubuntuusers.de/APT/}} verwendet. Neben der Möglichkeit, Pakete über Kommandozeilenparameter zu installieren, sind auch unterschiedliche Programme\footnote{\url{https://wiki.ubuntuusers.de/Pakete\_installieren/}} vorhanden, die eine grafische Benutzeroberfläche zur Installation und Verwaltung von Paketen anbieten.
+
+Neben den offiziellen Paketquellen (diese sind von Anfang an aktiviert) können noch Fremdquellen\footnote{\url{https://wiki.ubuntuusers.de/Fremdquellen/}}, sogenannte PPAs\footnote{\url{https://wiki.ubuntuusers.de/Paketquellen_freischalten/PPA/}} hinzugefügt werden. Das macht man meistens, um eine aktuellere Version eines Programmes zu erhalten oder um Pakete zu installieren, die in den offiziellen Quellen nicht enthalten sind. Es ist aber unbedingt zu beachten, dass Fremdquellen die Stabilität und die Sicherheit des Systems gefährden \emph{können}. Deshalb werden die offiziellen Paketquellen üblicherweise bevorzugt.
+
+\subsection{Die wichtigsten Befehle für die Kommandozeile}
+\begin{multicols}{2}
+Die lokalen Paketlisten aktualisieren
+\begin{lstlisting}
+sudo apt-get update
+\end{lstlisting}
+
+Alle Softwarepakete aktualisieren
+\begin{lstlisting}
+sudo apt-get upgrade
+\end{lstlisting}
+\end{multicols}
+
+\begin{multicols}{2}
+Ein Programm installieren
+\begin{lstlisting}
+sudo apt-get install program
+\end{lstlisting}
+
+Ein Programm deinstallieren
+\begin{lstlisting}
+sudo apt-get remove program
+\end{lstlisting}
+\end{multicols}
+
+\begin{multicols}{2}
+Eine Fremdquelle hinzufügen
+\begin{lstlisting}
+sudo add-apt-repository ppa:LP-BENUTZER/PPA-NAME
+sudo apt-get update
+\end{lstlisting}
+
+\columnbreak
+
+Nicht mehr benötigte Pakete deinstallieren
+\begin{lstlisting}
+sudo apt-get autoremove
+\end{lstlisting}
+\end{multicols}
 
 \input{Emulatoren}
 
