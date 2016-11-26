@@ -1,0 +1,47 @@
+\section{Paketverwaltung}
+
+Die meisten Programme, die man benötigt, müssen nicht manuell heruntergeladen werden. Software ist bei den meisten Linux-Distributionen in Paketen organisiert; mit einem Paketmanager kann diese Software automatisch installiert und auf dem aktuellen Stand gehalten werden.
+
+In Ubuntu und ähnlichen Systemen wird APT\footnote{\url{https://wiki.ubuntuusers.de/APT/}} verwendet. Neben der Möglichkeit, Pakete über Kommandozeilenparameter zu installieren, sind auch unterschiedliche Programme\footnote{\url{https://wiki.ubuntuusers.de/Pakete\_installieren/}} vorhanden, die eine grafische Benutzeroberfläche zur Installation und Verwaltung von Paketen anbieten.
+
+Neben den offiziellen Paketquellen (diese sind von Anfang an aktiviert) können noch Fremdquellen\footnote{\url{https://wiki.ubuntuusers.de/Fremdquellen/}}, sogenannte PPAs\footnote{\url{https://wiki.ubuntuusers.de/Paketquellen_freischalten/PPA/}} hinzugefügt werden. Das macht man meistens, um eine aktuellere Version eines Programmes zu erhalten oder um Pakete zu installieren, die in den offiziellen Quellen nicht enthalten sind. Es ist aber unbedingt zu beachten, dass Fremdquellen die Stabilität und die Sicherheit des Systems gefährden \emph{können}. Deshalb werden die offiziellen Paketquellen üblicherweise bevorzugt.
+
+\subsection{Die wichtigsten Befehle für die Kommandozeile}
+\begin{multicols}{2}
+Die lokalen Paketlisten aktualisieren
+\begin{lstlisting}
+sudo apt-get update
+\end{lstlisting}
+
+Alle Softwarepakete aktualisieren
+\begin{lstlisting}
+sudo apt-get upgrade
+\end{lstlisting}
+\end{multicols}
+
+\begin{multicols}{2}
+Ein Programm installieren
+\begin{lstlisting}
+sudo apt-get install program
+\end{lstlisting}
+
+Ein Programm deinstallieren
+\begin{lstlisting}
+sudo apt-get remove program
+\end{lstlisting}
+\end{multicols}
+
+\begin{multicols}{2}
+Eine Fremdquelle hinzufügen
+\begin{lstlisting}
+sudo add-apt-repository ppa:LP-BENUTZER/PPA-NAME
+sudo apt-get update
+\end{lstlisting}
+
+\columnbreak
+
+Nicht mehr benötigte Pakete deinstallieren
+\begin{lstlisting}
+sudo apt-get autoremove
+\end{lstlisting}
+\end{multicols}

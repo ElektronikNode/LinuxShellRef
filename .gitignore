@@ -3,4 +3,8 @@
 *.backup
 *.aux
 *.out
+*.txss
+*.pdf
+*.synctex.gz
+*.toc
 Test

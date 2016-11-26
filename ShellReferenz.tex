@@ -1,92 +1,3 @@
-\documentclass[11pt]{article}
-
-\usepackage{tabularx}
-\usepackage{ngerman}
-\usepackage[utf8]{inputenc}
-\usepackage{fancyhdr}
-\usepackage{listings}
-\usepackage{multicol}
-\usepackage{textcomp}
-\usepackage{hyperref}
-\usepackage{color}
-\usepackage{geometry}
-\newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
-
-\geometry {a4paper, left=20mm, right=20mm, top=25mm, bottom=25mm}
-
-\definecolor{grey}{RGB}{127,127,127}
-\definecolor{lightgrey}{RGB}{180,180,180}
-\definecolor{darkgrey}{RGB}{90,90,90}
-\definecolor{dkgreen}{rgb}{0,0.6,0}  
-\definecolor{gray}{rgb}{0.5,0.5,0.5} 
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-
-\definecolor{maroon}{rgb}{0.5,0,0}
-
-\lstset{literate=%
-{Ö}{{\"O}}1 
-{Ä}{{\"A}}1 
-{Ü}{{\"U}}1 
-{ß}{{\ss}}2 
-{ü}{{\"u}}1 
-{ä}{{\"a}}1 
-{ö}{{\"o}}1
-{~}{{\textapprox}}1
-}
-
-% Listings settings
-\lstset{
-    language=bash,
-    basicstyle=\ttfamily,
-    tabsize=4,
-    commentstyle=\color{dkgreen},
-    keywordstyle=\color{blue},
-    numbers=left,
-   	numberstyle=\tiny\color{gray}, 
-	stepnumber=1,
-	numbersep=5pt, 
-	backgroundcolor=\color{white},    
-    frame=l,
-  	rulecolor=\color{dkgreen},
-  	stringstyle=\color{mauve},
-  	escapeinside={\%*}{*)},
-  	morekeywords={cmp,cat,basename,ls,mkdir,rm,apt-get},
-  	breaklines=true
-}
-
-\lstdefinestyle{terminal}{
-    language=bash,
-    moredelim=[s][\color{mauve}\ttfamily]{bob@}{\$}
-}
-
-% Erste Zeile eines Absatzes wird nicht eingerückt
-\setlength{\parindent}{0pt}
-
-% Kopf- und Fußzeile
-\pagestyle{fancy}
-
-\lhead{Linux-Kurzreferenz}
-\chead{}
-\rhead{Offenes Technologielabor Gmunden}
-
-
-% Für Tabellen, etc.
-\def\arraystretch{1.3}
-
-% Überschrift
-\title{\textbf{Linux Shell Referenz}\\Für den Linux-Crashkurs am 3.12.2016}
-\author{Alle beteiligten Autoren}
-\date{Version 0.0}
-
-\begin{document}
-
-\maketitle
-
-\section {Allgemein}
-
-\subsection {Hilfeseiten}
-% man, apropos, info
-
 \section {Arbeiten mit Dateien}
 
 \subsection {Ortsbezeichnungen im Dateisystem}
@@ -101,6 +12,8 @@ Diese Datei / dieser Ordner & \lstinline$.$ & \lstinline$./Dokumente$, \lstinlin
 Übergeordnetes Verzeichnis & \lstinline$..$ & \lstinline$../Dokumente$ \\
 \hline
 \end{tabularx}
+
+%TODO Systempfade
 
 \subsection {Befehle zur Navigation im Dateisystem}
 
@@ -187,55 +100,3 @@ rm -r folder
 % chmod, chgrp, chown, ausführbar machen
 
 % TODO mount, umount, cd /media/usr/..., evtl etc/fstab
-
-\section{Paketverwaltung}
-
-Die meisten Programme, die man benötigt, müssen nicht manuell heruntergeladen werden. Software ist bei den meisten Linux-Distributionen in Paketen organisiert; mit einem Paketmanager kann diese Software automatisch installiert und auf dem aktuellen Stand gehalten werden.
-
-In Ubuntu und ähnlichen Systemen wird APT\footnote{\url{https://wiki.ubuntuusers.de/APT/}} verwendet. Neben der Möglichkeit, Pakete über Kommandozeilenparameter zu installieren, sind auch unterschiedliche Programme\footnote{\url{https://wiki.ubuntuusers.de/Pakete\_installieren/}} vorhanden, die eine grafische Benutzeroberfläche zur Installation und Verwaltung von Paketen anbieten.
-
-Neben den offiziellen Paketquellen (diese sind von Anfang an aktiviert) können noch Fremdquellen\footnote{\url{https://wiki.ubuntuusers.de/Fremdquellen/}}, sogenannte PPAs\footnote{\url{https://wiki.ubuntuusers.de/Paketquellen_freischalten/PPA/}} hinzugefügt werden. Das macht man meistens, um eine aktuellere Version eines Programmes zu erhalten oder um Pakete zu installieren, die in den offiziellen Quellen nicht enthalten sind. Es ist aber unbedingt zu beachten, dass Fremdquellen die Stabilität und die Sicherheit des Systems gefährden \emph{können}. Deshalb werden die offiziellen Paketquellen üblicherweise bevorzugt.
-
-\subsection{Die wichtigsten Befehle für die Kommandozeile}
-\begin{multicols}{2}
-Die lokalen Paketlisten aktualisieren
-\begin{lstlisting}
-sudo apt-get update
-\end{lstlisting}
-
-Alle Softwarepakete aktualisieren
-\begin{lstlisting}
-sudo apt-get upgrade
-\end{lstlisting}
-\end{multicols}
-
-\begin{multicols}{2}
-Ein Programm installieren
-\begin{lstlisting}
-sudo apt-get install program
-\end{lstlisting}
-
-Ein Programm deinstallieren
-\begin{lstlisting}
-sudo apt-get remove program
-\end{lstlisting}
-\end{multicols}
-
-\begin{multicols}{2}
-Eine Fremdquelle hinzufügen
-\begin{lstlisting}
-sudo add-apt-repository ppa:LP-BENUTZER/PPA-NAME
-sudo apt-get update
-\end{lstlisting}
-
-\columnbreak
-
-Nicht mehr benötigte Pakete deinstallieren
-\begin{lstlisting}
-sudo apt-get autoremove
-\end{lstlisting}
-\end{multicols}
-
-\input{Emulatoren}
-
-\end{document}
