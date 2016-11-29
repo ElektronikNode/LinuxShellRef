@@ -1,0 +1,37 @@
+\section{Kommandozeile}
+Die Kommandozeile (auch Terminal oder Shell) ist die einfachste Benutzerschnittstelle jedes Betriebssystems. Befehle werden hier ausschließlich als Text eingegeben. Da es mittlerweile für viele Aufgaben auch eine grafische Benutzeroberfläche gibt, ist der Eindruck entstanden, dass diese Art der Bedienung veraltet sei. Für viele fortgeschrittene Aufgaben ist das Terminal aber nach wie vor unersetzlich. \par %TODO Begründung 
+Eine Warnung: Anders als bei der grafischen Benutzerschnittstelle muss man im Terminal genau wissen was man tut. Es gibt hier keinen Papierkorb und kein ``Rückgängig machen''. Es empfiehlt sich also nicht Befehle zu ``raten''. \par
+Gelegentlich wird die Kommandozeile auf GNU/Linux--Systemen auch ``Shell'' genannt. (Die Shell liegt wie eine Schale um den Kernel.) Historisch gesehen ist ein Terminal ein Gerät um auf einen Rechner zu bedienen. Eine Shell ist ein Programm, dass auf dem Rechner läuft und Benutzereingaben interpretiert. Heutzutage werden diese Begriffe häufig synonym verwendet. Man sollte im Hinterkopf behalten, dass es verschiedene Shell--Programme gibt. Das mit Abstand wichtigste ist jedoch die GNU--Bash.
+
+\subsection{Ein Terminal starten}
+In vielen Linux--Distributionen öffnet die Tastenkombination \lstinline$STRG+ALT+T$ einen ``Terminalemulator'', ansonsten ist fast immer ein entsprechendes Programm im Startmenü zu finden. Außerdem gelangt man mit der Tastenkombination \lstinline$STRG+ALT+F1$ bis \lstinline$STRG+ALT+F6$ in ein ``virtuelles Terminal'' (auch dann wenn die GUI nicht mehr läuft). Hier muss man sich aber zunächst noch mit seinem Benutzernamen und Passwort anmelden. Mit \lstinline$STRG+ALT+F7$ kommt man wieder zurück in die GUI (sofern sie noch läuft). Wenn alle Stricke reißen und das System nicht mehr hochfährt hat man oft noch die Möglichkeit in eine ``root--shell'' zu booten um das System zu analysieren bzw. zu reparieren.
+
+\subsection{Grundlegendes}
+Jede neue Zeile im Terminal beginnt etwa so:
+
+\( \underbrace{\textbf{\lstinline|bob|}}_{(1)} \textbf{\lstinline|@|} \underbrace{\textbf{\lstinline|bob-computer|}}_{(2)} \textbf{\lstinline|:|} \underbrace{\textbf{\textapprox\lstinline|/Dokumente|}}_{(3)} \textbf{\lstinline|$|} \)
+
+Vor dem blinkendem Textcursor stehen folgende Informationen:
+\begin{enumerate}
+\item Der aktuelle Benutzer
+\item Name des Computers
+\item Der Dateipfad, in dem gerade gearbeitet wird
+\end{enumerate}
+
+Diese Zeile und der blinkende Cursor bedeuten, dass das Terminal bereit für Befehle ist. Fehlt diese Zeile bzw. blinkt der Cursor nicht ist das meist ein Hinweis darauf, dass das Terminal beschäftigt ist weil z.B. gerade ein Programm läuft. Laufende Befehle bzw. Skripte kann man mit \lstinline|STRG+C| abbrechen.
+
+\subsection{Befehle eingeben}
+Befehle werden im Terminal Zeilenweise verarbeitet. D.h. erst wenn man die Enter--Taste drückt wird der Befehl interpretiert ausgeführt. Die meisten Befehle haben auch ``Optionen'' oder ``Argumente'':
+\begin{itemize}
+ \item Argumente sind meist Eingaben für Befehle, z.B. Dateinamen oder Paketnamen.
+ \item Optionen verändern das genaue Verhalten eines Befehls. Meistens werden sie mit einem Bindestrich und einzelnen Buchstaben oder zwei Bindestrichen und ganzen Wörtern eingegeben.
+\end{itemize}
+Was tut man aber nun wenn einem der richtige Befehl nicht einfällt oder man sich nicht sicher ist wie dieser geschrieben wird? In Zeiten des Internets ist das kein wirkliches Problem, dennoch kann es Situationen geben in denen man gerade keine Internetverbindung hat (z.B. weil man gerade mit dem eigenen Rechner in einem Schlamassel steckt). Oft ist es aber auch einfach schneller folgende Befehle zu benutzen anstelle erst mühsam das Internet zu durchsuchen:
+\begin{itemize}
+ \item \lstinline|man befehl| gibt das Handbuch (manual) für \lstinline|befehl| aus. \lstinline|man| ist wohl die wichtigste Hilfe im Alltag. Meistens weiß man schon wie der Befehl heißt, kann sich aber nicht mehr genau erinnern wie gewissen Optionen funktionieren.
+ \item \lstinline|info befehl| ist ähnlich wie \lstinline|man|, gibt aber noch mehr Informationen und Beschreibungen aus.
+ \item \lstinline|apropos suchwort| hilft einem weiter wenn man nicht mehr genau weiß wie der Befehl lautet. In diesem Fall werden die Schlüsselwörter in den Handbuchseiten nach \lstinline|suchwort| durchsucht und alle Treffen aufgelistet. (Das können viele sein!)
+\end{itemize}
+
+\subsection{Schreibarbeit sparen}
+Der beste Freund des GNU/Linux--Hackers ist die Tabulatortaste. Angefangene Befehle oder Argumente werden vervollständigt oder, bei mehrmaligem Drücken, Vorschläge gemacht wenn die Shell bereits ``errät'' was man eingeben möchte. Das spart nicht nur Tipparbeit sondern dient auch als Gedankenstütze. Mit den Cursor--Tasten (Auf und Ab) kann man vorhin eingetippte Befehle wieder in die Befehlszeile laden und erneut ausführen bzw. modifizieren. Will man im Terminal Text kopieren bzw. einfügen kann man \lstinline|STRG+SHIFT+C| bzw. \lstinline|STRG+SHIFT+V| verwenden.
