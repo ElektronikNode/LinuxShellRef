@@ -26,6 +26,7 @@ Befehle werden im Terminal Zeilenweise verarbeitet. D.h. erst wenn man die Enter
  \item Argumente sind meist Eingaben für Befehle, z.B. Dateinamen oder Paketnamen.
  \item Optionen verändern das genaue Verhalten eines Befehls. Meistens werden sie mit einem Bindestrich und einzelnen Buchstaben oder zwei Bindestrichen und ganzen Wörtern eingegeben.
 \end{itemize}
+Befehle, Argumente und Optionen werden durch ein oder mehrere Leerzeichen voneinander getrennt. \footnote{Aus diesem Grund sollte man Leerzeichen in Dateinamen nach Möglichkeit vermeiden.} Im Gegensatz zu DOS/Windows spielt die Groß--/Kleinschreibung bei GNU/Linux durchaus eine Rolle. (\lstinline|ls -a| macht etwas anderes als \lstinline|ls -A|)\par
 Was tut man aber nun wenn einem der richtige Befehl nicht einfällt oder man sich nicht sicher ist wie dieser geschrieben wird? In Zeiten des Internets ist das kein wirkliches Problem, dennoch kann es Situationen geben in denen man gerade keine Internetverbindung hat (z.B. weil man gerade mit dem eigenen Rechner in einem Schlamassel steckt). Oft ist es aber auch einfach schneller folgende Befehle zu benutzen anstelle erst mühsam das Internet zu durchsuchen:
 \begin{itemize}
  \item \lstinline|man befehl| gibt das Handbuch (manual) für \lstinline|befehl| aus. \lstinline|man| ist wohl die wichtigste Hilfe im Alltag. Meistens weiß man schon wie der Befehl heißt, kann sich aber nicht mehr genau erinnern wie gewissen Optionen funktionieren.
@@ -34,4 +35,18 @@ Was tut man aber nun wenn einem der richtige Befehl nicht einfällt oder man sic
 \end{itemize}
 
 \subsection{Schreibarbeit sparen}
-Der beste Freund des GNU/Linux--Hackers ist die Tabulatortaste. Angefangene Befehle oder Argumente werden vervollständigt oder, bei mehrmaligem Drücken, Vorschläge gemacht wenn die Shell bereits ``errät'' was man eingeben möchte. Das spart nicht nur Tipparbeit sondern dient auch als Gedankenstütze. Mit den Cursor--Tasten (Auf und Ab) kann man vorhin eingetippte Befehle wieder in die Befehlszeile laden und erneut ausführen bzw. modifizieren. Will man im Terminal Text kopieren bzw. einfügen kann man \lstinline|STRG+SHIFT+C| bzw. \lstinline|STRG+SHIFT+V| verwenden.
+Der beste Freund des Terminal--Hackers ist die Tabulatortaste. Angefangene Befehle oder Argumente werden vervollständigt oder, bei mehrmaligem Drücken, Vorschläge gemacht wenn die Shell bereits ``errät'' was man eingeben möchte. Das spart nicht nur Tipparbeit sondern dient auch als Gedankenstütze. Mit den Cursor--Tasten (Auf und Ab) kann man vorhin eingetippte Befehle wieder in die Befehlszeile laden und erneut ausführen bzw. modifizieren. Will man im Terminal Text kopieren bzw. einfügen kann man \lstinline|STRG+SHIFT+C| bzw. \lstinline|STRG+SHIFT+V| verwenden.
+
+\subsection{Eingabe und Ausgabe}
+Viele einfache Befehle geben wenn alles glatt läuft überhaupt keine Antwort. Das ist Teil der Philosophie im Sinne von: ``Keine Nachrichten sind gute Nachrichten''. Erst wenn etwas nicht so läuft wie es soll oder Rückfragen entstehen erhält man eine Ausgabe. Andere Befehle geben wiederum sehr viel Ausgabe, die man evtl. in einer Datei sichern möchte. Das geht mit einer sog. Umleitung der Standardausgabe:
+\begin{lstlisting}
+ lspci > pci.txt
+\end{lstlisting}
+Genauso kann man auch die Standardeingabe umleiten:
+\begin{lstlisting}
+ grep "VGA" < pci.txt
+\end{lstlisting}
+Besonders praktisch ist die ``Pipe'', damit kann die Ausgabe des einen Programms in die Eingage des anderen Programms umgeleitet werden, z.B.:
+\begin{lstlisting}
+ lspci | grep "VGA"
+\end{lstlisting}
