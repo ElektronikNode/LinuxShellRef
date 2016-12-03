@@ -1,93 +1,151 @@
 \section {Arbeiten mit Dateien}
+Entsprechend der UNIX--Philosophie gilt auch in GNU/Linux: ``Alles ist eine Datei.'' (Naja, fast alles.) D.h. alle Ein- und Ausgabegeräte, Laufwerke und Schnittstellen werden durch Dateien im Dateisystem repräsentiert. Nicht zuletzt aus diesem Grund ist es sehr wichtig den Umgang mit Dateien auch im Terminal zu beherrschen. 
 
 \subsection {Ortsbezeichnungen im Dateisystem}
+Das GNU/Linux--Dateisystem ist (wie auch in Windows) als Baum organisiert. Man beachte, dass im Gegensatz zu Windows hier '/' anstelle von '\textbackslash' als Trennzeichen für Pfade verwendet wird. \footnote{Die Verwendung von '/' wird aber von den meisten Windows--Programmen ebenfalls geduldet.} Die ``Wurzel'' des Baumes heißt sinngemäß ``root'' und wird konsequenterweise mit einem einfachen '/' abgekürzt. Man unterscheidet:
+\begin{itemize}
+ \item absolute Pfade, die mit '/' beginnen, diese beziehen sich immer auf die Wurzel, und
+ \item relative Pfade, die sich auf das aktuelle Verzeichnis beziehen.
+\end{itemize}
 
+In der folgenden Tabelle sind einige besondere Pfade zusammengefasst:\par
 \begin{tabularx}{1\textwidth}{|l|l|X|}
 \hline
 \textbf{Ziel} & \textbf{Zeichen} & \textbf{Beispiel} \\
 \hline
 Hauptverzeichnis (Root) & \lstinline$/$ & \lstinline$/home/username/Dokumente$ \\
-Persönlicher Ordner (Home) & \textapprox & \textapprox\lstinline$/Dokumente$ \\
-Diese Datei / dieser Ordner & \lstinline$.$ & \lstinline$./Dokumente$, \lstinline$./run.sh$ \\
+Persönlicher Ordner (\lstinline|/home/username|) & \textapprox & \textapprox\lstinline$/Dokumente$ \\
+Dieser Ordner & \lstinline$.$ & \lstinline$./Dokumente$, \lstinline$./run.sh$ \\
 Übergeordnetes Verzeichnis & \lstinline$..$ & \lstinline$../Dokumente$ \\
 \hline
 \end{tabularx}
+\par
 
-%TODO Systempfade
+Einige wichtige Systempfade:\par
+\begin{tabularx}{1\textwidth}{|l|X|}
+\hline
+\textbf{Pfad} & \textbf{Beschreibung} \\
+\hline
+\lstinline|/bin, /sbin| & grundlegende Systemprogramme \\
+\lstinline|/boot| & Bootloader (GRUB) \\
+\lstinline|/dev| & Gerätedateien \\
+\lstinline|/etc| & hauptsächlich Konfigurationsdateien \\
+\lstinline|/home| & Benutzerverzeichnisse \\
+\lstinline|/lib| & Programmbibliotheken \\
+\lstinline|/media| & externe Festplatten, USB-Sticks, ... \\
+\lstinline|/opt| & zusätzliche Programme (manuell installiert) \\
+\lstinline|/tmp| & temporäre Dateien \\
+\lstinline|/usr| & Programme, Bibliotheken, Dokumentation, ... \\
+\lstinline|/var| & Logdateien, ... \\
+\hline
+\end{tabularx}
+
 
 \subsection {Befehle zur Navigation im Dateisystem}
 
-\textbf{Ordner ändern}
-\begin{multicols}{2}
+\textbf{Verzeichnis wechseln}
 \begin{lstlisting}[style=terminal]
 bob@computer:~$ cd Dokumente/
 bob@computer:~/Dokumente$ cd ..
 bob@computer:~$
 \end{lstlisting}
-\columnbreak
-\begin{tabularx}{1\columnwidth}{||X||}
-\hline
-\textbf USB-Sticks und Festplatten werden in \lstinline$/media/bob$ eingehängt\\
-%\lstinline$cd /media/bob/0976-2314$\\
-\hline
-\end{tabularx}
-\end{multicols}
 
 \textbf{Ornderinhalte auflisten}
-
 \begin{lstlisting}[style=terminal]
 bob@computer:~$ ls
 Bilder Dokumente Downloads
 \end{lstlisting}
 
 \begin{lstlisting}[style=terminal]
-bob@computer:~$ ls --all
-. .. Bilder Dokumente Downloads
+bob@computer:~$ ls -al
+drwxr-xr-x 177 bob  bob  118784 Dez  1 11:19 .
+drwxr-xr-x   4 root root 4096   Dez  9  2013 ..
+drwxr-xr-x   4 bob  bob  4096   Nov 20 18:03 Bilder
+drwxr-xr-x  11 bob  bob  4096   Nov 16 13:31 Dokumente
+drwxr-xr-x   3 bob  bob  4096   Nov 04 19:22 Downloads
 \end{lstlisting}
 
-\begin{lstlisting}[style=terminal]
-bob@computer:~$ ls -l
-drwxr-xr-x  4 bob bob 4096 Nov 20 18:03 Bilder
-drwxr-xr-x 11 bob bob 4096 Nov 16 13:31 Dokumente
-drwxr-xr-x  3 bob bob 4096 Nov 04 19:22 Downloads
+\textbf{Ordner und Dateien als Baum darstellen}
+\begin{lstlisting}
+ $ tree
 \end{lstlisting}
+
+
 
 \subsection {Interaktion mit Dateien und Ordnern}
 
 \begin{multicols}{2}
-Zeigt die Unterschiede zwischen zwei Dateien an
-\begin{lstlisting}
-cmp file1 file2
-\end{lstlisting}
-\columnbreak
 Zeigt den Inhalt einer Datei an
 \begin{lstlisting}
-cat file1 file2
+$ cat file
+\end{lstlisting}
+\columnbreak
+Zeigt die Unterschiede zwischen zwei Dateien an
+\begin{lstlisting}
+$ diff file1 file2
 \end{lstlisting}
 \end{multicols}
 
 \begin{multicols}{2}
-Gibt den Dateinamen ohne Pfad aus
+Text ausgeben / Datei erzeugen
 \begin{lstlisting}
-basename file1
+$ echo "TextTextText" > file
 \end{lstlisting}
 \columnbreak
 Einen Ordner erstellen
 \begin{lstlisting}
-mkdir folder
+$ mkdir folder
 \end{lstlisting}
 \end{multicols}
 
 \begin{multicols}{2}
 Eine Datei löschen
 \begin{lstlisting}
-rm file1
+$ rm file
 \end{lstlisting}
 \columnbreak
 Einen Ordner mit Inhalt löschen
 \begin{lstlisting}
-rm -r folder
+$ rm -r folder
 \end{lstlisting}
 \end{multicols}
+
+\begin{multicols}{2}
+Eine Datei kopieren
+\begin{lstlisting}
+$ cp file folder
+\end{lstlisting}
+\columnbreak
+Einen Ordner samt Inhalt kopieren
+\begin{lstlisting}
+$ cp -r folder1 folder2
+\end{lstlisting}
+\end{multicols}
+
+\begin{multicols}{2}
+Eine Datei/Ordner verschieben/umbenennen
+\begin{lstlisting}
+$ mv file folder
+\end{lstlisting}
+\columnbreak
+Lange Dateien/Inhalte ansehen
+\begin{lstlisting}
+$ cat file | less
+\end{lstlisting}
+\end{multicols}
+
+
+\begin{multicols}{2}
+Nach Dateien/Ordnern suchen
+\begin{lstlisting}
+$ find basefolder -iname "word"
+\end{lstlisting}
+\columnbreak
+Innerhalb einer Datei/Text suchen
+\begin{lstlisting}
+$ cat file | grep "word"
+\end{lstlisting}
+\end{multicols}
+
 
 % TODO mount, umount, cd /media/usr/..., evtl etc/fstab
